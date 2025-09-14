@@ -9,11 +9,11 @@ Please fill out:
 * Blog post URL:
 
 
-**Beginning**
+###Beginning
 
 The global film industry is one of the most influential and profitable entertainment sectors, generating billions of dollars annually across theaters, streaming, and merchandising. As audience preferences evolve and competition intensifies, studios and investors must carefully evaluate what drives box office success. This project explores key factors such as **genre trends, studio performance, audience ratings, and blockbuster economics** to identify patterns and opportunities in global cinema revenues.
 
-**Overview**
+###Overview
 
 This analysis examines worldwide gross earnings of films across multiple genres, studios, and years, complemented by viewer ratings from IMDb,TMDB, BOM and RT. By combining descriptive analytics, trend visualization, and correlation analysis, the project seeks to uncover:
 
@@ -27,7 +27,7 @@ This analysis examines worldwide gross earnings of films across multiple genres,
 
 The findings provide both strategic insights for major studios looking to maximize global returns and practical guidance for smaller studios seeking to identify profitable niches.
 
-**Business Understanding**
+###Business Understanding
 
 The central business problem addressed is:
 **“What factors most strongly influence worldwide box office performance, and how can studios optimize production and investment decisions accordingly?”**
@@ -42,7 +42,7 @@ Investors & stakeholders: understanding the balance between audience ratings, cr
 
 Ultimately, the business objective is to provide actionable insights that help industry players maximize profitability while minimizing risk in an increasingly competitive global film market.
 
-**Data Understanding**
+###Data Understanding
 
 The dataset combines information from multiple sources, covering films released worldwide between 2010–2018. The main features include:
 
@@ -65,7 +65,7 @@ Categorical variables (genre, studio) were standardized for grouping and pivot a
 
 This prepared dataset ensures reliability for both descriptive and exploratory analysis.
 
-**Data Analysis**
+###Data Analysis
 
 
 **Lets Import Necessary Tools**
