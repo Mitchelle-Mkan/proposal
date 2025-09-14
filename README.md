@@ -1,14 +1,15 @@
 # proposal
-## Files
+Import Libraries
 
+[ ]
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-     
 Load the Data
 
+[ ]
 # Load movie info
 movies = pd.read_csv("rt.movie_info (2).tsv.gz", sep="\t", encoding="utf-8")
 
@@ -18,7 +19,6 @@ reviews = pd.read_csv("rt.reviews.tsv.gz", sep="\t", encoding="latin-1")
 # Preview
 print(movies.head())
 print(reviews.head())
-     
    id                                           synopsis rating  \
 0   1  This gritty, fast-paced, and innovative police...      R   
 1   3  New York City, not-too-distant-future: Eric Pa...      R   
@@ -63,6 +63,7 @@ Analyze Which Genres Perform Best
 Average Scores by Genre
 
 
+[ ]
 # Calculate a 'fresh_ratio' from the reviews DataFrame as a proxy for sentiment
 review_sentiment = reviews.groupby('id')['fresh'].value_counts(normalize=True).unstack(fill_value=0)
 # Rename 'fresh' column to 'fresh_ratio' for clarity
@@ -92,22 +93,9 @@ plt.show()
 # Display the top 10 genres by average fresh ratio
 print("Top 10 Genres by Average 'Fresh' Review Ratio:")
 print(genre_sentiment.head(10))
-     
 
-Top 10 Genres by Average 'Fresh' Review Ratio:
-genre
-Gay and Lesbian                0.803571
-Sports and Fitness             0.746182
-Art House and International    0.730430
-Western                        0.729260
-Documentary                    0.705401
-Classics                       0.703107
-Special Interest               0.690382
-Cult Movies                    0.665633
-Anime and Manga                0.655000
-Drama                          0.629465
-Name: fresh_ratio, dtype: float64
 
+[ ]
 # Average scores by genre (as proxy for market performance)
 # Using 'fresh_ratio' as a proxy for sentiment since 'audience_score' and 'critics_score' are not available
 genre_sentiment_analysis = movies_with_sentiment_exploded.groupby("genre")["fresh_ratio"].mean().reset_index()
@@ -124,23 +112,12 @@ genre_sentiment_analysis.sort_values("fresh_ratio", ascending=False, inplace=Tru
 # Display the results
 print("Genre Sentiment Analysis based on 'Fresh' Review Ratio:")
 display(genre_sentiment_analysis.head(10))
-     
-Genre Sentiment Analysis based on 'Fresh' Review Ratio:
-genre	fresh_ratio	risk_gap
-10	Gay and Lesbian	0.803571	0.206226
-18	Sports and Fitness	0.746182	0.148837
-3	Art House and International	0.730430	0.133084
-20	Western	0.729260	0.131915
-7	Documentary	0.705401	0.108056
-4	Classics	0.703107	0.105762
-17	Special Interest	0.690382	0.093037
-6	Cult Movies	0.665633	0.068288
-2	Anime and Manga	0.655000	0.057655
-8	Drama	0.629465	0.032120
+
 Visualisation
 Genre Success vs Risk
 
 
+[ ]
 plt.figure(figsize=(12,6))
 sns.barplot(data=genre_sentiment_analysis.head(10), x="fresh_ratio", y="genre", palette="mako")
 plt.axvline(overall_fresh_ratio_avg, color="red", linestyle="--", label="Overall Avg")
@@ -150,16 +127,11 @@ plt.ylabel("Genre")
 plt.legend()
 plt.show()
 
-     
-/tmp/ipython-input-3064444475.py:2: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.barplot(data=genre_sentiment_analysis.head(10), x="fresh_ratio", y="genre", palette="mako")
 
 Risk vs Return
 
 
+[ ]
 plt.figure(figsize=(10,6))
 sns.scatterplot(data=genre_sentiment_analysis,
                 x="risk_gap",
@@ -174,10 +146,10 @@ plt.axhline(overall_fresh_ratio_avg, color="gray", linestyle="--", label="Overal
 plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.show()
 
-     
 
 Financial Insights
 
+[ ]
 def generate_financial_insights(df, overall_avg):
     insights = []
     for _, row in df.iterrows():
@@ -201,7 +173,7 @@ print("\n--- Financial Insights by Genre ---\n")
 for insight in financial_insights:
     print(insight)
 
-     
+
 --- Financial Insights by Genre ---
 
 📈 Gay and Lesbian: High upside with strong sentiment (0.80), but higher volatility (0.21). Potential blockbuster genre if marketed well.
