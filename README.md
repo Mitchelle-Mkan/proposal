@@ -82,7 +82,7 @@ import os
 
 ```
 
-**Loading The Data to Jupyter Notebook**
+### Loading The Data to Jupyter Notebook
 
 **The Numbers**
 
@@ -128,7 +128,7 @@ print(tn.head())
     4      $317,000,000   $620,181,382  $1,316,721,747  
 
 
-**Box Office Mojo**
+### Box Office Mojo
 
 bom = pd.read_csv(f"{data_path}/bom.movie_gross.csv.gz")
 print(bom.shape)
@@ -241,7 +241,7 @@ print(imdb_full.head())
     4  2017             80.0  Comedy,Drama,Fantasy            6.5       119  
 
 
-**THE MOVIE DB TMDB**
+### THE MOVIE DB TMDB
 
 
 ```python
@@ -277,7 +277,7 @@ print(tmdb.columns)
           dtype='object')
 
 
-**ROTTEN TOMATOES**
+### ROTTEN TOMATOES
 
 
 ```python
@@ -321,7 +321,7 @@ print(rt_info.columns)
           dtype='object')
 
 
-**IMDB**
+### IMDB
 
 
 ```python
@@ -394,9 +394,9 @@ print(imdb_full.head())
     4  2017             80.0  Comedy,Drama,Fantasy            6.5       119  
 
 
-**Data Selection**
+## Data Selection
 
-**The Numbers**
+### The Numbers
 
 The Number contains box office and budget info, but BOM has better international coverage.
 
@@ -406,7 +406,7 @@ Using both TN and BOM would cause redundancy (they overlap heavily).
 
 **Decision:** We drop TN in favor of BOM, which is more widely used in financial analysis.
 
-**Rotten Tomatoes**
+### Rotten Tomatoes
 
 RT scores are already correlated with IMDb ratings (both are critic/audience evaluations).
 
@@ -440,9 +440,9 @@ print(movie_ratings.shape)
     (73856, 3)
 
 
-**Exploratory Data Analysis.**
+## Exploratory Data Analysis.
 
-**Cleaning of Box Office Mojo**
+### Cleaning of Box Office Mojo
 
 
 
@@ -495,7 +495,7 @@ print(bom.isna().sum())
 
 This dataset contains **3,387** movies with information on title, studio, domestic gross, foreign gross, and release year. It is mostly complete, with only a few missing values in the studio and domestic_gross columns, but a significant portion **40%** of the foreign_gross data is missing. Additionally, the foreign_gross column is stored as text and will need to be cleaned and converted to numeric for analysis. Overall, the dataset is rich enough for exploring box office performance across studios and years, though attention will be required to handle missing and inconsistent values.
 
-**Cleaning of Box Office Mojo**
+### Cleaning of Box Office Mojo
 
 **Normalizing whitespace & empty-strings**
 
@@ -520,7 +520,7 @@ print("After normalizing blank strings:\n", bom.isnull().sum())
 
 This means that blank -NA placeholders are successfully normalized into real NaN values
 
-**Cleaning numeric money columns (foreign_gross, domestic_gross)**
+### Cleaning numeric money columns (foreign_gross, domestic_gross)
 
 
 ```python
@@ -643,7 +643,7 @@ plt.show()
     
 
 
-**Domestic Gross**
+### Domestic Gross
 
 
 The vast majority of movies gross less than 100 million dolars domestically.
@@ -652,7 +652,7 @@ There's a steep drop-off as gross revenue increases.
 
 A few movies fall in the $1B to 10B dolars range, which is unusual and likely includes outliers or data errors.
 
-**Foreign Gross**
+### Foreign Gross
 
 
 Similar to the domestic plot, most movies gross less than $100 million.
@@ -660,7 +660,7 @@ Similar to the domestic plot, most movies gross less than $100 million.
 There are also a few movies with gross revenues above 1B dolars, and some nearing $10B, which is extremely rare.
 
 
-**Extreme Values**
+### Extreme Values
 
 
 The highest-grossing movie of all time, Avatar (when adjusted for inflation or not), grossed around $2.9 billion globally.
@@ -674,7 +674,7 @@ An aggregated value (e.g., across many re-releases or formats).
 Or potentially an outlier due to a mislabeling of revenue sources.
 
 
-**Investigating Outliers**
+### Investigating Outliers
 
 
 ```python
@@ -1073,7 +1073,7 @@ print(imdb_full.isnull().sum())
 
 Awsome
 
-**Cleaning of The Movie Db**
+### Cleaning of The Movie Db
 
 
 ```python
@@ -1141,7 +1141,7 @@ print(tmdb.isna().sum())
 
 The dataset contains 26,517 movie entries with 10 columns. All fields are complete with no missing values, which means the dataset is clean and ready for analysis. The available variables provide rich information, including movie identifiers (id), titles (title, original_title), genres (genre_ids), language, release date, popularity score, and user engagement metrics (vote_average, vote_count). Since there are no null values, no major cleaning is required, and analysis can focus on exploring trends in popularity, ratings, languages, or genre distributions.
 
-**Data Merging**
+## Data Merging
 
 Before merging, we need titles and years in the same format across IMDB and BOM
 
@@ -1565,9 +1565,9 @@ imdb_bom_tmdb.head()
 
 
 
-**EDA ON OUR MERGERD DATASET**
+## EDA ON OUR MERGERD DATASET
 
-**Step 1** Create worldwide_gross
+### **Step 1** Create worldwide_gross
 
 
 ```python
@@ -1580,7 +1580,7 @@ imdb_bom_tmdb["worldwide_gross"] = (
 )
 ```
 
-**Step 2** Check Missing Values in Key Columns
+### **Step 2** Check Missing Values in Key Columns
 
 
 ```python
@@ -1631,7 +1631,7 @@ Mean worldwide gross is equivalent to $123M - pulled up by massive blockbusters.
 
 Median worldwide gross = $37.6M - shows the “typical” film earns far less than the mean.
 
-**GENRE CLEANING**
+### GENRE CLEANING
 
-**Step 1** Clean & Standardize Genres
+### **Step 1** Clean & Standardize Genres
 
